@@ -23,30 +23,30 @@ public class Narray {
 
 
     public static void main(String[] args) {
- //       int[][] array = new int[3][3];
- //       Random random = new Random();
- //       for (int i = 0; i < array.length; i++) {
- //           for (int j = 0; j < array[i].length; j++) {
- //               array[i][j] = random.nextInt(10, 21);
- //               System.out.print(array[i][j] + " ");
- //           }
- //           System.out.println();
- //       }
- //       System.out.println("Введите число:");
- //       Scanner scanner = new Scanner(System.in);
- //       int addnum = scanner.nextInt();
- //       int sumarr= 0;
- //       for (int i = 0; i < array.length; i++) {
- //           for (int j = 0; j < array[i].length; j++) {
- //               array[i][j] += addnum;
- //               System.out.print(array[i][j] + " ");
- //               sumarr += array[i][j];
- //           }
- //           System.out.println();
- //       }
- //       System.out.println("Сумма всех элементов массива : ");
- //       System.out.print(sumarr);
- //   }
+        //       int[][] array = new int[3][3];
+        //       Random random = new Random();
+        //       for (int i = 0; i < array.length; i++) {
+        //           for (int j = 0; j < array[i].length; j++) {
+        //               array[i][j] = random.nextInt(10, 21);
+        //               System.out.print(array[i][j] + " ");
+        //           }
+        //           System.out.println();
+        //       }
+        //       System.out.println("Введите число:");
+        //       Scanner scanner = new Scanner(System.in);
+        //       int addnum = scanner.nextInt();
+        //       int sumarr= 0;
+        //       for (int i = 0; i < array.length; i++) {
+        //           for (int j = 0; j < array[i].length; j++) {
+        //               array[i][j] += addnum;
+        //               System.out.print(array[i][j] + " ");
+        //               sumarr += array[i][j];
+        //           }
+        //           System.out.println();
+        //       }
+        //       System.out.println("Сумма всех элементов массива : ");
+        //       System.out.print(sumarr);
+        //   }
 // String [][] chess = new String[8][8];
 //     for (int i = 0; i < chess.length ; i++) {
 //         for (int j = 0; j <  chess.length ; j++) {
@@ -60,5 +60,37 @@ public class Narray {
 //         System.out.println();
 //     }
 
+        Scanner scanner = new Scanner(System.in);
+
+        // Чтение входных данных
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+
+        // Создание массива
+        int[][] array = new int[n][m];
+        int num = 0;
+
+        // Заполнение массива змейкой
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                // Четные строки - слева направо
+                for (int j = 0; j < m; j++) {
+                    array[i][j] = num++;
+                }
+            } else {
+                // Нечетные строки - справа налево
+                for (int j = m - 1; j >= 0; j--) {
+                    array[i][j] = num++;
+                }
+            }
         }
+
+        // Вывод массива
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                System.out.printf("%3d", array[i][j]);
+            }
+            System.out.println();
+        }
+    }
 }
