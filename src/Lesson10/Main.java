@@ -15,5 +15,7 @@ public class Main {
         System.out.println(user2.toString());
         System.out.println(user2.hashCode());
         System.out.println(user1.equals(user3));
+        System.out.println(user3.toString());
+        System.out.println(user3.hashCode());
     }
 }
