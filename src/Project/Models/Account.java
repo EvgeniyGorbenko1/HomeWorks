@@ -1,4 +1,4 @@
-package Project.models;
+package Project.Models;
 
 public class Account {
     private String num;
@@ -23,8 +23,8 @@ public class Account {
 
     @Override
     public String toString() {
-        return  num + '|' +
-                 + amount + '\n';
+        return num + '|' +
+                +amount + '\n';
     }
 
     public void setAmount(int amount) {

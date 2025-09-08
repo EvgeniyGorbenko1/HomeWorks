@@ -2,19 +2,16 @@ package Project.Logic;
 
 import Project.Exceptions.InvalidAccountException;
 import Project.Exceptions.InvalidAmountException;
-import Project.models.Transfer;
+import Project.Models.Transfer;
 
 import java.io.*;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    private final Pattern accNum = Pattern.compile("\\d{5}-\\d{5}");
-    private final Pattern amountNum = Pattern.compile("\\d+");
-    private final String accounts = "C:\\Users\\Кристина\\IdeaProjects\\HomeWork6\\src\\Project\\accounts.txt";
+    private final Pattern ACCNUM = Pattern.compile("\\d{5}-\\d{5}");
+    private final Pattern AMOUNTNUM = Pattern.compile("\\d+");
 
     public Transfer parseFile(File file, ServiceAccount serviceAccount) throws IOException {
         String fileName = file.getName();
@@ -41,15 +38,13 @@ public class Parser {
             serviceAccount.transferAmount(fromAccNum, toAccNum, amount);
             return new Transfer(LocalDateTime.now(), fileName, fromAccNum, toAccNum, amount, "Успешно обработан");
         } catch (InvalidAccountException | InvalidAmountException e) {
-            return new Transfer(LocalDateTime.now(), fileName, fromAccNum != null ? fromAccNum : "неизвестен",
-                    toAccNum != null ? toAccNum : "неизвестен", amount != null ? amount : 0,
-                    "ошибка во время обработки");
+            return new Transfer(LocalDateTime.now(), fileName, fromAccNum != null ? fromAccNum : "неизвестен", toAccNum != null ? toAccNum : "неизвестен", amount != null ? amount : 0, "ошибка во время обработки");
         }
     }
 
     private String findAccount(String line, String keyword) {
-        if (line.toLowerCase().contains(keyword)) {
-            Matcher matcher = accNum.matcher(line);
+        if (line.toLowerCase().contains(keyword.toLowerCase())) {
+            Matcher matcher = ACCNUM.matcher(line);
             if (matcher.find()) {
                 return matcher.group();
             }
@@ -59,7 +54,7 @@ public class Parser {
 
     private Integer findAmount(String line) {
         if (line.toLowerCase().contains("сум")) {
-            Matcher matcher = amountNum.matcher(line);
+            Matcher matcher = AMOUNTNUM.matcher(line);
             if (matcher.find()) {
                 return Integer.parseInt(matcher.group());
             }
@@ -67,8 +62,7 @@ public class Parser {
         return null;
     }
 
-    private void validateData(String fromAccount, String toAccount, Integer amount)
-            throws InvalidAccountException, InvalidAmountException {
+    private void validateData(String fromAccount, String toAccount, Integer amount) throws InvalidAccountException, InvalidAmountException {
         if (fromAccount == null) throw new InvalidAccountException("неверный номер счета отправителя");
         if (toAccount == null) throw new InvalidAccountException("неверный номер счета получателя");
         if (amount == null) throw new InvalidAmountException("неверная сумма перевода");

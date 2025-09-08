@@ -1,4 +1,4 @@
-package Project.models;
+package Project.Models;
 
 import java.time.LocalDateTime;
 
@@ -21,11 +21,6 @@ public class Transfer {
 
     @Override
     public String toString() {
-        return time + " | " +
-                fileName + " | Перевод с " +
-                fromAccNum + " на " +
-                toAccNum + " " +
-                amount + " | " +
-                message + ".";
+        return time + " | " + fileName + " | Перевод с " + fromAccNum + " на " + toAccNum + " " + amount + " | " + message + ".";
     }
 }
