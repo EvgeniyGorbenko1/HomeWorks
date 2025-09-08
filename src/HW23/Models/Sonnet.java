@@ -1,4 +1,4 @@
-package HW23.Main;
+package HW23.Models;
 
 import java.util.List;
 

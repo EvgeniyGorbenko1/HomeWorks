@@ -1,7 +1,7 @@
 package HW23.Parse;
 
-import HW23.Main.Author;
-import HW23.Main.Sonnet;
+import HW23.Models.Author;
+import HW23.Models.Sonnet;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SaxHandler extends DefaultHandler {
-    public Sonnet sonnet;
+    private Sonnet sonnet;
     public Author author;
     public List<String> lines;
 
